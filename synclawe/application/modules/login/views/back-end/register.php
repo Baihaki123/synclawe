@@ -18,6 +18,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/Template/plugins/iCheck/square/blue.css">
   <link rel="stylesheet" href="<?php echo base_url('assets/Template/dist/css/admin.css'); ?>">
+  <link rel="icon" href="<?= base_url('assets/web/frontend-css/images/favicon.ico'); ?>" type="image/gif">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,11 +47,6 @@
           <div class="form-group has-feedback">
             <input type="text" class="form-control" id="name" name="name" placeholder="Full name" value="<?php echo set_value('name'); ?>">
             <?php echo form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-            <input type="text" class="form-control" id="nim_nis" name="nim_nis" placeholder="NIM atau NIS" value="<?php echo set_value('nim_nis'); ?>">
-            <?php echo form_error('nim_nis', '<small class="text-danger pl-3">', '</small>'); ?>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">

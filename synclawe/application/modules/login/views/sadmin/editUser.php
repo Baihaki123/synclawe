@@ -28,39 +28,26 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label no-padding-right">Name</label>
                         <div class="col-sm-6">
-                            <input id="name" class="form-control" placeholder="Nama" required="true" name="name" type="text" value="<?php echo set_value('name'); ?>">
-                            <?php echo form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
+                            <input id="name" class="form-control" name="name" type="text">
+                            <!-- <?php echo form_error('name', '<small class="text-danger pl-3">', '</small>'); ?> -->
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label no-padding-right">User Name</label>
                         <div class="col-sm-3">
-                            <input id="email" class="form-control" placeholder="User Name" required="true" name="email" type="text" value="<?php echo set_value('email'); ?>">
+                            <input id="email" class="form-control" placeholder="User Name" required="true" name="email" type="text" >
                             <?php echo form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password1" class="col-sm-2 control-label no-padding-right">Password</label>
-                        <div class="col-sm-3">
-                            <input id="password1" class="form-control" placeholder="Password" required="true" minlength="6" name="password1" type="password">
-                            <?php echo form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password2" class="col-sm-2 control-label no-padding-right">Confirm Password</label>
-                        <div class="col-sm-3">
-                            <input id="password2" class="form-control" placeholder="Confirm Password" required="true" name="password2" type="password">
-                            <?php echo form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="role_id" class="col-sm-2 control-label no-padding-right">Role</label>
                         <div class="col-sm-4">
-                        <select name="role" id="role" class="form-control">
-                            <option value="">- Select Role -</option>
-                            <?php foreach ($getrole as $gr) : ?>
-                            <option value="<?= $gr['id']; ?>"><?= $gr['role']; ?></option>
-                            <?php endforeach; ?>
+                        <select name="role" id="role" class="form-control" value="<?php echo $gr['role'];?>">
+                        <!-- <?php foreach ($getrole as $gr) : ?>
+                                <option value="<?= $gr['id']; ?>"><?= $gr['role_id']; ?></option>
+                                <?php echo $gr['id'] == $gr['role_id'] ? "selected" : null ?>
+                            <?php endforeach; ?> -->
+                        
                         </select>
                         </div>
                     </div>
@@ -69,7 +56,7 @@
                             <label class="col-sm-2 control-label no-padding-right" for="is_active">
                                 Active?
                             </label>
-                            <input class="" type="checkbox" value="1" name="is_active" id="is_active" checked>  
+                            <input type="checkbox" class="form-check-input" id="is_active" name="is_active" checked > 
                         </div>
                         
                         <!-- <label for="active" class="col-sm-2 control-label no-padding-right">Active</label>
@@ -80,11 +67,8 @@
                 </div>
             </div>
             <div class="box-footer bg-gray-light">
-                <input class="btn btn-success btn-sm btn-save" type="submit" value="Simpan">
-                <a class="btn btn-default btn-sm" href="<?php echo base_url('login/SAdmin/user'); ?>">
-                <i></i> Cancel
-                </a>  &nbsp;
-                <!-- <button class="btn btn-default btn-sm" data-request="push" href="<?php echo base_url('login/SAdmin/user'); ?>" type="button">Cancel</button> -->
+                <input class="btn btn-success btn-sm btn-save" type="submit" value="Update">
+                <button class="btn btn-default btn-sm" data-request="push" href="https://flipbook.tegalkab.go.id/ghadmin/user" type="button">Cancel</button>
             </div>
         </div>
         </form>

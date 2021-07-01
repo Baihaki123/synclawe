@@ -11,9 +11,10 @@
         </ol>
     </section>
     <section class="content">
+    <?= $this->session->flashdata('message'); ?>
         <div class="row">
             <div class="col-xs-12">
-                <form method="POST" action="<?php echo base_url('login/Admin/userTambah'); ?>" accept-charset="UTF-8" class="form-horizontal" id="form-delete"><input name="_token" type="hidden" value="MymwTs8kFAfSZEtnJ1LnYIhEtWXJDmRkPpVZsfP7">
+                <!-- <form method="POST" action="" accept-charset="UTF-8" class="form-horizontal" id="form-delete"> -->
                 <div class="box box-primary box-solid">
                     <div class="box-header with-border">
                         <h3 class="box-title">User</h3>
@@ -44,19 +45,15 @@
                             </thead>
                             <tbody>      
                                 <?php $i = 1; ?>                       
-                                <?php foreach ($userTambah as $u) : ?>
+                                <?php foreach ($role as $r) : ?>
                                 <tr>
                                     <th scope="row"><?= $i; ?></th>
-                                    <td><?= $u['email']; ?></td>
-                                    <td><?= $u['role_id']; ?></td>
-                                    <td><?= $u['is_active']; ?></td>
+                                    <td><?= $r['email']; ?></td>
+                                    <td><?= $r['role']; ?></td>
+                                    <td><?= $r['is_active']; ?></td>
                                     <td>
-                                    <a href="<?php echo base_url(); ?>login/Admin/tambahUser/ <?php echo $u['id'];?>" class="btn btn-primary btn-xs" data-request="push">edit</a>
-                                    <!-- <a href="" class="btn btn-success btn-sm" href=""><i class="fa fa-edit"> Edit</i></a> -->
-                                    <a href="<?php echo base_url(); ?>login/Admin/tambahUser/<?php echo $u['id']; ?>" class="btn btn-danger btn-xs btn-hapus" data-id="1">delete</a>
-                                    <!-- <a class="btn  btn-danger btn-sm" href="<?php echo base_url(); ?>login/Admin/tambahUser/<?php echo $u['id']; ?>" class="btn  btn-danger btn-sm" onclick="return confirm('Are you sure delete?');">
-                                    <i class="fa fa-trash "></i> Delete
-                                    </a>  &nbsp; -->
+                                    <a href="<?php echo base_url(); ?>login/SAdmin/editUser/ <?php echo $r['id'];?>" class="btn btn-primary btn-xs" data-request="push">edit</a>
+                                    <a href="<?php echo base_url(); ?>login/SAdmin/hapusUser/<?php echo $r['id']; ?>" class="btn btn-danger btn-xs btn-hapus" onclick="return confirm('Are you sure delete?');">delete</a>
                                     <a href="" class="btn btn-warning btn-xs" data-request="push">RP</a>
                                     </td>
                                 </tr>
@@ -71,10 +68,12 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <button class="btn btn-success btn-sm" data-request="push" href="<?php echo base_url('login/Admin/userTambah'); ?>" type="submit">Add Data</button>
+                        <a class="btn  btn-success btn-sm" href="<?php echo base_url('login/SAdmin/userTambah'); ?>">
+                        <i></i> Add Data
+                        </a>  &nbsp;
                     </div>
                 </div>
-                </form>
+                <!-- </form> -->
             </div>
             </section>
         </div>

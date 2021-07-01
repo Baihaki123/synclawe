@@ -28,6 +28,7 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="icon" href="<?= base_url('assets/web/frontend-css/images/favicon.ico'); ?>" type="image/gif">
 </head>
 
 <body class="hold-transition login-page" style="background: url(assets/Template/dist/img/bg.jpg)">
