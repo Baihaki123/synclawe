@@ -80,9 +80,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle page-scroll" href="#about" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?php echo base_url('Login/register') ?>"><span class="item-text">Register Member</span></a>
+                        <a class="dropdown-item" href="<?php echo base_url('register') ?>"><span class="item-text">Register Member</span></a>
                         <div class="dropdown-items-divide-hr"></div>
-                        <a class="dropdown-item" href="<?php echo base_url('Login') ?>"><span class="item-text">Login Member</span></a>
+                        <a class="dropdown-item" href="<?php echo base_url('login') ?>"><span class="item-text">Login Member</span></a>
                     </div>
                 </li>
                 <!-- end of dropdown menu -->
@@ -405,16 +405,17 @@
             </div> <!-- end of row -->
             <div class="row">
                 <div class="col-lg-12">
-
+<!-- card ini yang mau kamu loop -->
                     <!-- Card-->
+                    <?php foreach ($kuota as $kuotas){?>
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-title">STARTER</div>
-                            <div class="card-subtitle">Just to see what can be achieved</div>
+                            <div class="card-title"><?php echo $kuotas->unit;?></div>
+                            <div class="card-subtitle">....</div>
                             <hr class="cell-divide-hr">
                             <div class="price">
-                                <span class="currency">$</span><span class="value">199</span>
-                                <div class="frequency">monthly</div>
+                                <span class="value"><?php echo $kuotas->kuota;?></span>
+                                <div class="frequency">Kuota</div>
                             </div>
                             <hr class="cell-divide-hr">
                             <ul class="list-unstyled li-space-lg">
@@ -440,94 +441,15 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#request">REQUEST</a>
+                                <a class="btn-solid-reg page-scroll" href="<?php echo base_url('login/register'); ?>">Daftar</a>
                             </div>
                         </div>
                     </div> <!-- end of card -->
                     <!-- end of card -->
-
-                    <!-- Card-->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title">MEDIUM</div>
-                            <div class="card-subtitle">Very appropriate for the short term</div>
-                            <hr class="cell-divide-hr">
-                            <div class="price">
-                                <span class="currency">$</span><span class="value">299</span>
-                                <div class="frequency">monthly</div>
-                            </div>
-                            <hr class="cell-divide-hr">
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">Improve Your Email Marketing</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">User And Admin Rights Control</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">List Building And Cleaning</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">Collected Data Management</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i>
-                                    <div class="media-body">More Planning And Evaluation</div>
-                                </li>
-                            </ul>
-                            <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#request">REQUEST</a>
-                            </div>
-                        </div>
-                    </div> <!-- end of card -->
-                    <!-- end of card -->
-
-                    <!-- Card-->
-                    <div class="card">
-                        <div class="label">
-                            <p class="best-value">Best Value</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">COMPLETE</div>
-                            <div class="card-subtitle">Must have for large companies</div>
-                            <hr class="cell-divide-hr">
-                            <div class="price">
-                                <span class="currency">$</span><span class="value">399</span>
-                                <div class="frequency">monthly</div>
-                            </div>
-                            <hr class="cell-divide-hr">
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">Improve Your Email Marketing</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">User And Admin Rights Control</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">List Building And Cleaning</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">Collected Data Management</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i>
-                                    <div class="media-body">More Planning And Evaluation</div>
-                                </li>
-                            </ul>
-                            <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#request">REQUEST</a>
-                            </div>
-                        </div>
-                    </div> <!-- end of card -->
-                    <!-- end of card -->
+                    <?php } ?> 
+                   
+<!--sampai sini  ini ditutup disini biar loopingnya campuran html -->
+       
 
                 </div> <!-- end of col -->
             </div> <!-- end of row -->

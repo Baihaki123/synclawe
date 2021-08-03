@@ -1,0 +1,8 @@
+perhatikan pas di foraech kamu mau looping bisa dimana aja..
+intinya pas <?php foraech($apa as $ubah){?> <--- ditutup begini
+
+konten yang mau kamu loop berada ditengahnya
+
+baru deh panggil isi $ubah->fieldtabel
+
+<?php } ?>

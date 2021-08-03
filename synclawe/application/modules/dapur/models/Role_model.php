@@ -19,7 +19,7 @@ class Role_model extends CI_Model
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4>Role deleted!</h4>
             </div>');
-        redirect('login/Admin/role');
+        redirect('dapur/Admin/role');
     }
 
     public function hapusUser($id)
@@ -29,7 +29,7 @@ class Role_model extends CI_Model
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4>Akun berhasil dihapus</h4>
             </div>');
-        redirect('login/SAdmin/user');
+        redirect('dapur/SAdmin/user');
     }
 
     public function getUserById($id)

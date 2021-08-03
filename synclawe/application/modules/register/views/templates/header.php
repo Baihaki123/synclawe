@@ -94,7 +94,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="<?php echo base_url('dapur/User'); ?>" class="btn btn-default btn-flat">Profile</a>
+                    <a href="<?php echo base_url('Login/User'); ?>" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
                     <a href="<?php echo base_url('Login/logout'); ?>" class="btn btn-default btn-flat" onclick="return confirm('Are you sure Logout?');">Sign out</a>

@@ -49,15 +49,15 @@ class Login extends CI_Controller
                         ];
                         $this->session->set_userdata($data);
                         if ($user['role_id' ]== 1) {
-                            redirect('login/SAdmin');
+                            redirect('dapur/SAdmin');
                         } else if ($user['role_id' ]== 2) {
-                            redirect('login/Admin');
+                            redirect('dapur/Admin');
                         } else {
                             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             <h4>Lengkapi data!</h4>
                             </div>');
-                            redirect('login/User');
+                            redirect('dapur/User');
                         }
                     } else {
                         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
@@ -89,55 +89,6 @@ class Login extends CI_Controller
         }
         
     }
-
-    public function register()
-    {
-        if ($this->session->userdata('email')) {
-            redirect('login/User');
-        }
-        $this->form_validation->set_rules('nim_nis', 'NIM atau NIS', 'required|trim');
-        $this->form_validation->set_rules('name', 'Name', 'required|trim');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', ['is_unique' => 'This Email has already registered!']);
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', ['matches' => 'Passowrd dont matches!', 'min_length' => 'Password to short !']);
-        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
-        if ($this->form_validation->run() == false) {
-
-            $this->load->view('back-end/register');
-        } else {
-            $email = $this->input->post('email', true);
-            $data = [
-                'nim_nis' => htmlspecialchars($this->input->post('nim_nis', true)),
-                'name' => htmlspecialchars($this->input->post('name', true)),
-                'email' => htmlspecialchars($email),
-                'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'role_id' => 2,
-                'is_active' => 0,
-                'date_created' => time()
-
-            ];
-
-            // siapkan token
-            $token = base64_encode(random_bytes(32));
-            $user_token = [
-                'email' => $email,
-                'token' => $token,
-                'date_created' => time()
-            ];
-
-            $this->db->insert('user', $data);
-            $this->db->insert('user_token', $user_token);
-
-            $this->_sendEmail($token, 'verify');
-
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4>Congratulation! your account has been created. Please activate your account</h4>
-            </div>');
-            redirect('Login');
-        }
-    }
-
 
     private function _sendEmail($token, $type)
     {
@@ -173,55 +124,6 @@ class Login extends CI_Controller
             die;
         }
     }
-
-
-    public function verify()
-    {
-        $email = $this->input->get('email');
-        $token = $this->input->get('token');
-
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
-
-        if ($user) {
-            $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-
-            if ($user_token) {
-                if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
-                    $this->db->set('is_active', 1);
-                    $this->db->where('email', $email);
-                    $this->db->update('user');
-
-                    $this->db->delete('user_token', ['email' => $email]);
-                    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4>' . $email . ' has been activated! Please login.</h4>
-                    </div>');
-                    redirect('Login');
-                } else {
-                    $this->db->delete('user', ['email' => $email]);
-                    $this->db->delete('user_token', ['email' => $email]);
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4>Account activation failed! Token expired.</h4>
-                    </div>');
-                    redirect('Login');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4>Account activation failed! Wrong token.</h4>
-                </div>');
-                redirect('Login');
-            }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4>Account activation failed! Wrong email.</h4>
-            </div>');
-            redirect('Login');
-        }
-    }
-
 
     public function logout()
     {
