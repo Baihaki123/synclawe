@@ -42,7 +42,7 @@
                         <td><?= $sm['is_active']; ?></td>
                         <td>
                         <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editSubMenuModal<?php echo $sm['id'];?>"><i class="fa fa-edit"> Edit</i></a>
-                        <a class="btn  btn-danger btn-sm" href="<?php echo base_url(); ?>login/Menu/hapusSubmenu/<?php echo $sm['id']; ?>" class="btn  btn-danger btn-sm" onclick="return confirm('Are you sure delete?');">
+                        <a class="btn  btn-danger btn-sm" href="<?php echo base_url(); ?>dapur/Menu/hapusSubmenu/<?php echo $sm['id']; ?>" class="btn  btn-danger btn-sm" onclick="return confirm('Are you sure delete?');">
                         <i class="fa fa-trash "></i> Delete
                         </a>  &nbsp;
                         </td>
@@ -66,7 +66,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('login/menu/submenu'); ?>" method="post">
+            <form action="<?= base_url('dapur/menu/submenu'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="title" name="title" placeholder="Submenu title">

@@ -317,4 +317,16 @@ class SAdmin extends CI_Controller
         </div>');
         redirect('dapur/SAdmin/kuota');
     }
+
+    public function PMagang()
+    {
+        $data['title'] = 'Pengajuan Magang';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    
+        $data['pengajuan'] = $this->db->get('groups')->result_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('sadmin/PMagang', $data);
+        $this->load->view('templates/footer');
+    }
 }

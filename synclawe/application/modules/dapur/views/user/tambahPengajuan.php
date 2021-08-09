@@ -3,6 +3,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		<script src="https://d3komputer.poltektegal.ac.id/plugins/select2/select2.full.min.js"></script>
 	</head>
 	<body>
 
@@ -10,14 +11,15 @@
 <div class="content-header"><br>
 <div class="container">
     <div class="col-md-8">
+	<?= $this->session->flashdata('message'); ?>
 				<div class="box box-solid box-primary">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Form Pengajuan Magang</h3>
 					</div>
 					
 					<!-- form start -->
-					<form method="POST" action="">
-					<input type="hidden" name="surat_id" value="">
+					<form method="POST" action="<?php echo base_url('dapur/User/tambahPengajuan'); ?>">
+					<input type="hidden" name="id" id="id">
 					
 					<div class="row">
 						<div class="col-md-6">
@@ -25,14 +27,17 @@
                           <div class="form-group">
                                 <label>Nama Group</label>
                                     <input type="text" class="form-control" id="nama_group" name="nama_group" placeholder="Nama Group">
+									<?= form_error('nama_group', '<small class="text-danger pl-3">','</small>');?>
                                 </div> 
 							<div class="form-group">
 							  <label>Kategori Group</label>
-								<select class="form-control" id="kategori_group" name="kategori_group" required="">
+								<select class="form-control" id="group_category" name="group_category">
                                     <option value="" disabel>- Pilih -</option>
-									<option value="1">Personal</option>
-									<option value="2">Group</option>
+									<option value="Personal">Personal</option>
+									<option value="Group">Group</option>
 								</select>
+								<?= form_error('group_category', '<small class="text-danger pl-3">','</small>');?>
+								
 							</div>
                             <div class="form-group">
                                 <label>Kategori Pendidikan</label>
@@ -41,45 +46,53 @@
                                     <option value="SMK">SMK</option>
                                     <option value="Kuliah">Kuliah</option>
                                 </select>
+								<?= form_error('education_category', '<small class="text-danger pl-3">','</small>');?>
                             </div>
                             <div class="form-group">
                                 <label>Pendidikan</label>
                                 <input type="text" class="form-control" id="education" name="education" placeholder="Pendidikan">
+								<?= form_error('education', '<small class="text-danger pl-3">','</small>');?>
                             </div>
                             <div class="form-group">
                                 <label>Program Studi</label>
                                 <input type="text" class="form-control" id="study_program" name="study_program" placeholder="Program Studi">
+								<?= form_error('study_program', '<small class="text-danger pl-3">','</small>');?>
                             </div>
                             <div class="form-group">
                                 <label>Mulai</label>
                                 <input type="date" class="form-control" id="start" name="start" placeholder="Mulai">
+								<?= form_error('start', '<small class="text-danger pl-3">','</small>');?>
                             </div>
                             <div class="form-group">
                                 <label>Selesai</label>
                                 <input type="date" class="form-control" id="end" name="end" placeholder="Selesai">
+								<?= form_error('end', '<small class="text-danger pl-3">','</small>');?>
                             </div>
 							<div class="form-group">
 								<label for="nama">Pilih File Surat Pengajuan</label>
-								<input class="form-control" id="usr_foto" type="file" name="image" style="width:100%">
+								<input class="form-control" id="pengajuan" type="file" name="pengajuan" style="width:100%">
+								<?= form_error('pengajuan', '<small class="text-danger pl-3">','</small>');?>
 								<p class="help-block">File surat pengajuan harus pdf / jpeg / jpeg / png,<br>dan ukuran file harus di bawah 2MB.</p>
 							</div>
                             <div class="form-group">
                                 <label>Unit</label>
-                                    <select name="opd_id" class="form-control">
+                                    <select name="unit" class="form-control">
                                     <option value="" disabel>- Pilih -</option>
+									<option value="Sisfo">Sisfo</option>
+									<option value="Hardware">Hardware</option>
+									<option value="BAA">BAA</option>
                                 </select>
+								<?= form_error('unit', '<small class="text-danger pl-3">','</small>');?>
                             </div>
 						  </div>
 						</div>
+
 						<div class="col-md-6">
 						  <div class="box-body">
 							<div class="form-group">
 								<label for="penyusun">Anggota</label>
-								<!-- yg model begitu biasain jgn dilakukan <?= $user['name']; ?> nga aman ntr kodingmu
-								ganti sama <?php echo $user['name'];?>
-								web nya mana mas? js e ndi -->
-								<input class="form-control" type="text" value="<?= $user['name']; ?>" disabled="">
-								<input name="" type="hidden">
+								<input type="text" class="form-control" id="anggota" name="anggota" placeholder="Masukan Nama Anda">
+								<?= form_error('Anggota', '<small class="text-danger pl-3">','</small>');?>
 							</div>
 														
 							<span id="tambah_anggota"></span>
@@ -87,14 +100,12 @@
 							<div class="form-group">
 								<button type="button" class="btn btn-default" title="" id="tombol_tambah_anggota" data-original-title="Tambah Anggota"><i class="fa fa-plus"></i> Tambah Anggota</button>
 							</div>
-
-							
 							
 							<div class="form-group">
 								<small>Jika kelompok, anggota lain tidak perlu lagi membuat pengajuan, cukup Anda saja.</small>
 							</div>
 
-							<div class="row">
+							<!-- <div class="row">
 								<div class="col-xs-10">
 									<div class="form-group">
 										<label for="penyusun">Anggota</label>
@@ -102,18 +113,14 @@
 									</div>
 								</div>
 								<button type="button" class="btn btn-danger" id="hapus_anggota" title="Hapus Anggota" style="margin-top:25px"><i class="fa fa-remove"></i></button>
-							</div>
-
-							<!-- <div class="form-group">
-								<label>Anggota</label>
-								<select class="itemName form-control" style="height: 500px;" name="itemName" id="itemName"></select>
 							</div> -->
+
 						  </div>
 						</div>
 
 						<div class="col-md-12">
 						  <div class="box-footer">
-							<button type="submit" class="btn btn-success" name="surat_simpan" data-original-title="" title="">Simpan</button>&nbsp; 
+							<button type="submit" class="btn btn-success" href="<?php echo base_url('dapur/User/tambahPengajuan'); ?>">Simpan</button>&nbsp; 
 							<button type="button" class="btn btn-primary" onclick="window.location='<?php echo base_url('dapur/User/pengajuan'); ?>'" data-original-title="" title="">Batal</button>
 						  </div>
 						</div>
@@ -126,46 +133,18 @@
 </div>
 
 
-<script type="text/javascript">
+<script>
 $(document).ready(function(){
     var max_fields      = 3 - $('select#penyusun').length;
     var fields          = $("#tambah_anggota");
     var add_button      = $("#tombol_tambah_anggota");
 
     var x = 1;
-    $(add_button).click(function(e){
+    add_button.click(function(e){
         e.preventDefault();
         if(x < max_fields){
             x++;
-            $(fields).append('<div class="row"><div class="col-xs-10"><div class="form-group"><label for="penyusun">Anggota</label><select class="itemName form-control" name="itemName" id="itemName" autocomplete="off"></select></div></div><button type="button" class="btn btn-danger" id="hapus_anggota" title="Hapus Anggota" style="margin-top:25px"><i class="fa fa-remove"></i></button></div>'); //add input box
-	
-			$('.itemName').select2({
-		placeholder: '-- Pilih Mahasiswa/Siswa --',
-		ajax:{
-			url: "<?php echo base_url(); ?>/login/User/GetData",
-			dataType: "json",
-			delay: 250,
-			data: function(params){
-				return{
-					user : params.term
-				};
-			},
-			processResults: function(data){
-				var results = [];
-
-				$.each(data, function(index, item){
-					results.push({
-						id: item.id,
-						text: item.name
-					});
-				});
-				return{
-					results: results
-				};
-			}
-		},
-		minimumInputLength: 2
-	});
+            $(fields).append('<div class="row"><div class="col-xs-10"><div class="form-group"><label for="penyusun">Anggota</label><input type="text" class="form-control" id="anggota1" name="anggota1" placeholder="Masukan Nama Anda"></div></div><button type="button" class="btn btn-danger" id="hapus_anggota" title="Hapus Anggota" style="margin-top:25px"><i class="fa fa-remove"></i></button></div>'); //add input box
         }
     });
 
@@ -176,11 +155,12 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 	$('.itemName').select2({
 		placeholder: '-- Pilih Mahasiswa/Siswa --',
 		ajax:{
-			url: "<?php echo base_url(); ?>/login/User/GetData",
+			url: "<?php echo base_url(); ?>/dapur/User/GetData",
 			dataType: "json",
 			delay: 250,
 			data: function(params){
@@ -204,9 +184,8 @@ $(document).ready(function(){
 		},
 		minimumInputLength: 2
 	});
-</script>
+</script> -->
 
 	
 </body>
 </html>
-

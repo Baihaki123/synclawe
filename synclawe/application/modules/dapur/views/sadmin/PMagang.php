@@ -16,11 +16,6 @@
 				<div class="box box-info">
 					<div class="box-header with-border">
 					  <h3 class="box-title">Daftar Pengajuan</h3>
-					  
-					  <div class="pull-right">
-												
-						<button type="button" class="btn btn-success" onclick="window.location='<?php echo base_url('dapur/User/tambahPengajuan'); ?>'" style="margin-left:10px" data-original-title="" title="">Tambah Surat</button>
-					  </div>
 					</div>
 					
 					<div class="box-body">
@@ -49,10 +44,11 @@
                                 <td><?= $pnj['study_program']; ?></td>
                                 <td><?= $pnj['start']; ?></td>
                                 <td><?= $pnj['end']; ?></td>
-								<td>
-								<a href="" class="label label-success" data-toggle="modal" data-target="#newEditKuotaModal<?php echo $pnj['id'];?>">Edit</a>
-								<a href="<?php echo base_url(); ?>dapur/SAdmin/hapusKuota/<?php echo $pnj['id']; ?>" class="btn btn-danger btn-xs btn-hapus" onclick="return confirm('Are you sure delete?');">delete</a>
-								</td>
+								<td style="color:red">
+                                    <button onclick="window.location='#' "class="btn btn-dark shadow">
+                                    <i class="fa fa-search-plus mr-2"> Detail</i>
+                                    </button>
+                                </td>
 						</tr>
 						<?php $i++; ?>
                         <?php endforeach; ?>
