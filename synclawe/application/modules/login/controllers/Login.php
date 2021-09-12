@@ -45,7 +45,8 @@ class Login extends CI_Controller
                     if (password_verify($password, $user['password'])) {
                         $data = [
                             'email' => $user['email'],
-                            'role_id' => $user['role_id']
+                            'role_id' => $user['role_id'],
+                            'id_user' => $user['id']
                         ];
                         $this->session->set_userdata($data);
                         if ($user['role_id' ]== 1) {
@@ -111,10 +112,10 @@ class Login extends CI_Controller
 
         if ($type == 'verify') {
             $this->email->subject('Account Verification');
-            $this->email->message('Click this link to verify you account : <a href="' . base_url() . 'Login/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+            $this->email->message('Click this link to verify you account : <a href="' . base_url() . 'Register/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
         }  else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
-            $this->email->message('Click this link to reset your password : <a href="' . base_url() . 'Login/resetPassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+            $this->email->message('Click this link to reset your password : <a href="' . base_url() . 'dapur/resetPassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
         }
 
         if ($this->email->send()) {

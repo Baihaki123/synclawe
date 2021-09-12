@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2021 at 03:00 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Waktu pembuatan: 12 Sep 2021 pada 14.01
+-- Versi server: 10.4.18-MariaDB
+-- Versi PHP: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `nama_admin`, `opd_name`, `opd_id`, `role_id`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `admin` (`id`, `username`, `password`, `nama_admin`, `opd_name`, `op
 -- --------------------------------------------------------
 
 --
--- Table structure for table `educations`
+-- Struktur dari tabel `educations`
 --
 
 CREATE TABLE `educations` (
@@ -68,11 +68,12 @@ CREATE TABLE `educations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groups`
+-- Struktur dari tabel `groups`
 --
 
 CREATE TABLE `groups` (
   `id` int(10) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `nama_group` varchar(50) NOT NULL,
   `group_category` varchar(25) NOT NULL,
   `education_category` varchar(25) NOT NULL,
@@ -82,23 +83,23 @@ CREATE TABLE `groups` (
   `end` date NOT NULL,
   `pengajuan` varchar(128) NOT NULL,
   `unit` enum('Sisfo','Hardware','BAA') NOT NULL,
-  `anggota` varchar(128) NOT NULL,
-  `anggota1` varchar(128) NOT NULL,
-  `anggota2` varchar(128) NOT NULL
+  `anggota` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `groups`
+-- Dumping data untuk tabel `groups`
 --
 
-INSERT INTO `groups` (`id`, `nama_group`, `group_category`, `education_category`, `education`, `study_program`, `start`, `end`, `pengajuan`, `unit`, `anggota`, `anggota1`, `anggota2`) VALUES
-(1, 'ask', 'Group', 'SMK', 'smk n 1 slw', 'tkj', '2021-08-08', '2021-09-08', 'avatar5.png', 'Sisfo', 'aski', 'baihaki', ''),
-(7, 'ask', 'Group', 'SMK', 'smk n 1 slw', 'rpl', '2021-08-08', '2021-09-08', 'avatar5.png', 'Sisfo', 'aski', 'baihaki', '');
+INSERT INTO `groups` (`id`, `id_user`, `nama_group`, `group_category`, `education_category`, `education`, `study_program`, `start`, `end`, `pengajuan`, `unit`, `anggota`) VALUES
+(1, 0, 'ask', 'Group', 'SMK', 'smk n 1 slw', 'tkj', '2021-08-08', '2021-09-08', 'avatar5.png', 'Sisfo', 'aski'),
+(7, 73, 'pinguin', 'Group', 'SMK', 'smk pernek', 'rpl', '2021-08-08', '2021-09-08', 'avatar5.png', 'Sisfo', 'aski'),
+(10, 0, 'ask', 'Group', 'Kuliah', 'poltek', 'komputer', '2021-09-02', '2021-10-02', 'avatar5.png', 'Hardware', 'abc'),
+(11, 87, 'asaad', 'Group', 'Kuliah', 'smk', 'daa', '2021-09-02', '2021-09-25', 'avatar5.png', 'Hardware', 'adada,acacaca,avavaa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kegiatan`
+-- Struktur dari tabel `kegiatan`
 --
 
 CREATE TABLE `kegiatan` (
@@ -114,7 +115,7 @@ CREATE TABLE `kegiatan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kuota_unit`
+-- Struktur dari tabel `kuota_unit`
 --
 
 CREATE TABLE `kuota_unit` (
@@ -125,7 +126,7 @@ CREATE TABLE `kuota_unit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kuota_unit`
+-- Dumping data untuk tabel `kuota_unit`
 --
 
 INSERT INTO `kuota_unit` (`id`, `unit`, `kuota`, `unit_id`) VALUES
@@ -136,7 +137,7 @@ INSERT INTO `kuota_unit` (`id`, `unit`, `kuota`, `unit_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Struktur dari tabel `members`
 --
 
 CREATE TABLE `members` (
@@ -157,7 +158,7 @@ CREATE TABLE `members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mentors`
+-- Struktur dari tabel `mentors`
 --
 
 CREATE TABLE `mentors` (
@@ -171,7 +172,7 @@ CREATE TABLE `mentors` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `output_magang`
+-- Struktur dari tabel `output_magang`
 --
 
 CREATE TABLE `output_magang` (
@@ -187,7 +188,7 @@ CREATE TABLE `output_magang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Struktur dari tabel `roles`
 --
 
 CREATE TABLE `roles` (
@@ -199,7 +200,7 @@ CREATE TABLE `roles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `unit`
+-- Struktur dari tabel `unit`
 --
 
 CREATE TABLE `unit` (
@@ -211,7 +212,7 @@ CREATE TABLE `unit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `unit`
+-- Dumping data untuk tabel `unit`
 --
 
 INSERT INTO `unit` (`id`, `name`, `address`, `phone`, `email`) VALUES
@@ -222,7 +223,7 @@ INSERT INTO `unit` (`id`, `name`, `address`, `phone`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -237,21 +238,21 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
 (24, 'Aski', 'baihakiaski@gmail.com', 'user8-128x128.jpg', '$2y$10$pq9Ctl/UpBFJ8KBuX7YTj.b9GtFN5jbX6GhuktwIji91abhwNXMGm', 1, 1, 1622503481),
 (25, 'BAIHAKI', 'askibaihaki50@gmail.com', 'avatar04.png', '$2y$10$K0HJ.kTSJsVaFqWa1gO76eHwzL.oMZVWjMB5GRQvWe69DRsP8fNPy', 2, 1, 1622505727),
-(47, 'ariel', 'aariel873@gmail.com', 'default.jpg', '$2y$10$sTmOYx.3Z/jZgQFQEwAN1epieooJWLaYcQyPcNATliLDfV5wEdEM2', 3, 1, 1625120853),
 (64, 'aski', 'aski@gmail.com', 'default.jpg', '$2y$10$DPewf5uPpi.cfS4nxUfNp.dvh6WFBWJ4AUxAdECz9kOGUCO7vpTaa', 2, 1, 1626837471),
 (65, 'fakri', 'admin@gmhkk.com', 'default.jpg', '$2y$10$TaGHI14UcKbA7RwOTy4y0.TGssISaPlhy7ZXNET7eMf0C82GuZSTS', 3, 1, 1626852942),
-(73, 'aski', 'yani@gmail.com', 'default.jpg', '$2y$10$KNcHQfIgFU1gEhbuFC3hj.0aiScTROskE0e3YeQQNh900yZ1BE7By', 2, 1, 1626854848);
+(73, 'aski', 'yani@gmail.com', 'default.jpg', '$2y$10$KNcHQfIgFU1gEhbuFC3hj.0aiScTROskE0e3YeQQNh900yZ1BE7By', 3, 1, 1626854848),
+(87, 'ariel', 'aariel873@gmail.com', 'default.jpg', '$2y$10$hms7rXD/r7UDJc/CLKKraOg.pO65E1hPUTmFUrsMT0GmfkAi5vaMu', 3, 1, 1629358925);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_access_menu`
+-- Struktur dari tabel `user_access_menu`
 --
 
 CREATE TABLE `user_access_menu` (
@@ -261,7 +262,7 @@ CREATE TABLE `user_access_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_access_menu`
+-- Dumping data untuk tabel `user_access_menu`
 --
 
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
@@ -277,7 +278,7 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_menu`
+-- Struktur dari tabel `user_menu`
 --
 
 CREATE TABLE `user_menu` (
@@ -286,7 +287,7 @@ CREATE TABLE `user_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_menu`
+-- Dumping data untuk tabel `user_menu`
 --
 
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
@@ -298,7 +299,7 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_role`
+-- Struktur dari tabel `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -307,7 +308,7 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_role`
+-- Dumping data untuk tabel `user_role`
 --
 
 INSERT INTO `user_role` (`role_id`, `role`) VALUES
@@ -318,7 +319,7 @@ INSERT INTO `user_role` (`role_id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_sub_menu`
+-- Struktur dari tabel `user_sub_menu`
 --
 
 CREATE TABLE `user_sub_menu` (
@@ -331,7 +332,7 @@ CREATE TABLE `user_sub_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_sub_menu`
+-- Dumping data untuk tabel `user_sub_menu`
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
@@ -351,7 +352,7 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_token`
+-- Struktur dari tabel `user_token`
 --
 
 CREATE TABLE `user_token` (
@@ -362,7 +363,7 @@ CREATE TABLE `user_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user_token`
+-- Dumping data untuk tabel `user_token`
 --
 
 INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
@@ -375,7 +376,7 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
@@ -384,32 +385,32 @@ ALTER TABLE `admin`
   ADD KEY `role_id_2` (`role_id`);
 
 --
--- Indexes for table `educations`
+-- Indeks untuk tabel `educations`
 --
 ALTER TABLE `educations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `groups`
+-- Indeks untuk tabel `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kegiatan`
+-- Indeks untuk tabel `kegiatan`
 --
 ALTER TABLE `kegiatan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `member_id` (`member_id`);
 
 --
--- Indexes for table `kuota_unit`
+-- Indeks untuk tabel `kuota_unit`
 --
 ALTER TABLE `kuota_unit`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `members`
+-- Indeks untuk tabel `members`
 --
 ALTER TABLE `members`
   ADD PRIMARY KEY (`id`),
@@ -417,144 +418,144 @@ ALTER TABLE `members`
   ADD KEY `role_id` (`role_id`);
 
 --
--- Indexes for table `mentors`
+-- Indeks untuk tabel `mentors`
 --
 ALTER TABLE `mentors`
   ADD PRIMARY KEY (`email`),
   ADD KEY `role_id` (`role_id`);
 
 --
--- Indexes for table `output_magang`
+-- Indeks untuk tabel `output_magang`
 --
 ALTER TABLE `output_magang`
   ADD PRIMARY KEY (`id`),
   ADD KEY `member_id` (`member_id`);
 
 --
--- Indexes for table `roles`
+-- Indeks untuk tabel `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `unit`
+-- Indeks untuk tabel `unit`
 --
 ALTER TABLE `unit`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_access_menu`
+-- Indeks untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_menu`
+-- Indeks untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_role`
+-- Indeks untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `user_sub_menu`
+-- Indeks untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_token`
+-- Indeks untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `groups`
+-- AUTO_INCREMENT untuk tabel `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `kuota_unit`
+-- AUTO_INCREMENT untuk tabel `kuota_unit`
 --
 ALTER TABLE `kuota_unit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `unit`
+-- AUTO_INCREMENT untuk tabel `unit`
 --
 ALTER TABLE `unit`
   MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
--- AUTO_INCREMENT for table `user_access_menu`
+-- AUTO_INCREMENT untuk tabel `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `user_menu`
+-- AUTO_INCREMENT untuk tabel `user_menu`
 --
 ALTER TABLE `user_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `user_role`
+-- AUTO_INCREMENT untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `user_sub_menu`
+-- AUTO_INCREMENT untuk tabel `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- AUTO_INCREMENT for table `user_token`
+-- AUTO_INCREMENT untuk tabel `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `members`
+-- Ketidakleluasaan untuk tabel `members`
 --
 ALTER TABLE `members`
   ADD CONSTRAINT `members_ibfk_1` FOREIGN KEY (`id`) REFERENCES `output_magang` (`member_id`),
   ADD CONSTRAINT `members_ibfk_2` FOREIGN KEY (`id`) REFERENCES `kegiatan` (`member_id`);
 
 --
--- Constraints for table `roles`
+-- Ketidakleluasaan untuk tabel `roles`
 --
 ALTER TABLE `roles`
   ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`id`) REFERENCES `mentors` (`role_id`),

@@ -17,10 +17,7 @@ class SAdmin extends CI_Controller
         $this->load->model('Menu_model'); //load dulu modelnya
 		$data['jml_user'] = $this->Menu_model->total_user();
 		$data['jml_unit'] = $this->Menu_model->total_unit();
-		// $data['jml_pria'] = $this->Menu_model->total_pria();
-		// $data['jml_wanita'] = $this->Menu_model->total_wanita();
-		// $data['page'] = 'Home';
-		// $this->load->view('Dashboard', $data, FALSE);
+		
         
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -148,7 +145,6 @@ class SAdmin extends CI_Controller
 
         $data['role'] = $this->role->getRole();
         $data['getrole'] = $this->db->get('user_role')->result_array();
-        // $data['userTambah'] = $this->db->get('user')->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('sadmin/user', $data);

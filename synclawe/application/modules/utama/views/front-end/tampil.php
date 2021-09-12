@@ -194,7 +194,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Politeknik Harapan Bersama Kota Tegal</h2>
-                    <p class="p-heading p-large">A Vocational Higher Education Institution located in Tegal City, which is the 29th best campus in the National Ranking of Vocational Higher Education cluster</p>
+                    <p class="p-heading p-large">Perguruan Tinggi Vokasi yang berlokasi di Kota Tegal yang merupakan kampus terbaik ke-29 dalam klaster Pemeringkatan Nasional Perguruan Tinggi Vokasi</p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
@@ -399,8 +399,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Multiple Pricing Options</h2>
-                    <p class="p-heading p-large">We've prepared pricing plans for all budgets so you can get started right away. They're great for small companies and large organizations</p>
+                    <h2>Daftar Kuota Penerimaan Magang</h2>
+                    <p class="p-heading p-large">Silahkan Daftar sesuai dengan minat bakat dan kemampuan yang anda miliki.</p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
@@ -441,7 +441,7 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="<?php echo base_url('login/register'); ?>">Daftar</a>
+                                <a class="btn-solid-reg page-scroll" href="<?php echo base_url('register'); ?>">Daftar</a>
                             </div>
                         </div>
                     </div> <!-- end of card -->

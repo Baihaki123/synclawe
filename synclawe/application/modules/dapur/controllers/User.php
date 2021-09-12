@@ -124,7 +124,7 @@ class User extends CI_Controller
         $data['title'] = 'Pengajuan Magang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     
-        $data['pengajuan'] = $this->db->get('groups')->result_array();
+        $data['pengajuan'] = $this->Menu_model->getpMagang($this->session->userdata('id_user'));
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('user/pengajuan', $data);
@@ -136,7 +136,7 @@ class User extends CI_Controller
         $data['title'] = 'Pengajuan Magang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-
+        
         $this->form_validation->set_rules('nama_group', 'Name', 'required|trim');
         $this->form_validation->set_rules('group_category', 'Kategori', 'required');
         $this->form_validation->set_rules('education_category', 'Kategori Pendidikan', 'required');
@@ -146,11 +146,15 @@ class User extends CI_Controller
         $this->form_validation->set_rules('end', 'Tanggal Selesai', 'required');
         $this->form_validation->set_rules('pengajuan', 'surat pengajuan', 'required');
         $this->form_validation->set_rules('unit', 'unit', 'required');
-        $this->form_validation->set_rules('anggota', 'Anggota', 'required');
+        $this->form_validation->set_rules('anggota[]', 'Anggota', 'required');
 
         if($this->form_validation->run() == false) {
 
         } else {
+            $anggota = $this->input->post('anggota[]');
+            
+            $anggota1 = implode(',', $anggota);
+            
             $query=[
                 'id'=> $this->input->post('id'),
                 'nama_group'=> $this->input->post('nama_group'),
@@ -162,9 +166,7 @@ class User extends CI_Controller
                 'end'=>$this->input->post('end'),
                 'pengajuan'=>$this->input->post('pengajuan'),
                 'unit'=>$this->input->post('unit'),
-                'anggota'=>$this->input->post('anggota'),
-                'anggota1'=>$this->input->post('anggota1'),
-                'anggota2'=>$this->input->post('anggota2'),
+                'anggota'=>$anggota1,
             ];
             $this->db->insert('groups', $query);
             $this->session->set_flashdata('message','<div class="alert alert-success alert-dismissible">

@@ -54,7 +54,7 @@
                                     <td>
                                     <a href="<?php echo base_url('dapur/SAdmin/getUser/').$r['id'];?>" class="btn btn-primary btn-xs" data-request="push">edit</a>
                                     <a href="<?php echo base_url(); ?>dapur/SAdmin/hapusUser/<?php echo $r['id']; ?>" class="btn btn-danger btn-xs btn-hapus" onclick="return confirm('Are you sure delete?');">delete</a>
-                                    <a href="" class="btn btn-warning btn-xs" data-request="push">RP</a>
+                                    <a href="#" class="btn btn-warning btn-xs" data-request="push">RP</a>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>

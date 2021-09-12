@@ -47,4 +47,12 @@ class Menu_model extends CI_Model
         $this->db->like('name', $user);
         return $this->db->get()->result_array();
     }
+
+    public function getpMagang($id_user)
+    {
+        $this->db->select('user.*, groups.*');
+        $this->db->join('user', 'groups.id_user = user.id', 'inner');
+        $this->db->where('groups.id_user', $id_user);
+        return $this->db->get('groups')->result_array();
+    }
 }

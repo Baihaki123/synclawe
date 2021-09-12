@@ -3,7 +3,6 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-		<script src="https://d3komputer.poltektegal.ac.id/plugins/select2/select2.full.min.js"></script>
 	</head>
 	<body>
 
@@ -91,7 +90,7 @@
 						  <div class="box-body">
 							<div class="form-group">
 								<label for="penyusun">Anggota</label>
-								<input type="text" class="form-control" id="anggota" name="anggota" placeholder="Masukan Nama Anda">
+								<input type="text" class="form-control" id="anggota" name="anggota[]" placeholder="Masukan Nama Anda">
 								<?= form_error('Anggota', '<small class="text-danger pl-3">','</small>');?>
 							</div>
 														
@@ -144,11 +143,11 @@ $(document).ready(function(){
         e.preventDefault();
         if(x < max_fields){
             x++;
-            $(fields).append('<div class="row"><div class="col-xs-10"><div class="form-group"><label for="penyusun">Anggota</label><input type="text" class="form-control" id="anggota1" name="anggota1" placeholder="Masukan Nama Anda"></div></div><button type="button" class="btn btn-danger" id="hapus_anggota" title="Hapus Anggota" style="margin-top:25px"><i class="fa fa-remove"></i></button></div>'); //add input box
+            $(fields).append('<div class="row"><div class="col-xs-10"><div class="form-group"><label for="penyusun">Anggota</label><input type="text" class="form-control" id="anggota1" name="anggota[]" placeholder="Masukan Nama Anda"></div></div><button type="button" class="btn btn-danger" id="hapus_anggota" title="Hapus Anggota" style="margin-top:25px"><i class="fa fa-remove"></i></button></div>');
         }
     });
 
-    $(fields).on("click","#hapus_anggota", function(e){ //user click on remove text
+    $(fields).on("click","#hapus_anggota", function(e){ 
         e.preventDefault(); 
         $(this).parent('div').remove(); x--;
     });

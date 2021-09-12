@@ -19,7 +19,7 @@
 					  
 					  <div class="pull-right">
 												
-						<button type="button" class="btn btn-success" onclick="window.location='<?php echo base_url('dapur/User/tambahPengajuan'); ?>'" style="margin-left:10px" data-original-title="" title="">Tambah Surat</button>
+						<button type="button" class="btn btn-success" onclick="window.location='<?php echo base_url('dapur/User/tambahPengajuan'); ?>'" style="margin-left:10px" data-original-title="" title="">Tambah Pengajuan</button>
 					  </div>
 					</div>
 					
